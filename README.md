@@ -61,7 +61,7 @@ File: `.env`
 
 ```env
 PORT=5000
-MONGODB_URI=mongodb://127.0.0.1:27017/online_banking
+MONGODB_URI=mongodb://xxxx.x.x.x:xxxxx/online_banking
 JWT_SECRET=supersecretjwtkey
 ```
 
