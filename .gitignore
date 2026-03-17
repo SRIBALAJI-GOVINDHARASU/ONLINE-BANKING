@@ -9,7 +9,8 @@ client/dist/
 # Environment variables
 .env
 .env.local
-.env.production
+# .env.production is intentionally tracked (contains only public API URL)
+
 
 # Logs
 *.log
