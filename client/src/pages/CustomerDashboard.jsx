@@ -353,19 +353,40 @@ export default function CustomerDashboard() {
               <tr>
                 <th>Date</th>
                 <th>Type</th>
+                <th>Credit / Debit</th>
                 <th>Amount</th>
                 <th>Description</th>
               </tr>
             </thead>
             <tbody>
-              {transactions.slice(0, 10).map((tx) => (
-                <tr key={tx._id}>
-                  <td>{new Date(tx.createdAt).toLocaleString()}</td>
-                  <td>{tx.type}</td>
-                  <td>₹{tx.amount}</td>
-                  <td>{tx.description}</td>
-                </tr>
-              ))}
+              {transactions.slice(0, 10).map((tx) => {
+                const isCredit = tx.type === 'deposit';
+                return (
+                  <tr key={tx._id}>
+                    <td>{new Date(tx.createdAt).toLocaleString()}</td>
+                    <td style={{ textTransform: 'capitalize' }}>{tx.type}</td>
+                    <td>
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          padding: '2px 10px',
+                          borderRadius: '12px',
+                          fontWeight: 'bold',
+                          fontSize: '0.8rem',
+                          background: isCredit ? '#d4edda' : '#f8d7da',
+                          color: isCredit ? '#155724' : '#721c24',
+                        }}
+                      >
+                        {isCredit ? '⬆ Credit' : '⬇ Debit'}
+                      </span>
+                    </td>
+                    <td style={{ color: isCredit ? 'green' : 'red', fontWeight: 'bold' }}>
+                      {isCredit ? '+' : '-'}₹{tx.amount}
+                    </td>
+                    <td>{tx.description}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}
